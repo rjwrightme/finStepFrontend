@@ -1,11 +1,30 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      black: colors.black,
+      white: colors.white,
+      red: colors.red,
+      yellow: colors.yellow,
+      green: colors.green,
+      aqua: {
+        light: "#57DDD5",
+        DEFAULT: "#58D6D2",
+        dark: "#5DC1CF",
+      },
+      ocean: {
+        DEFAULT: "#2FA8B8",
+      },
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
