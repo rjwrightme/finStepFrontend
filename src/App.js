@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Login from "./components/Login";
 import "./App.css";
+import "@fontsource/rubik";
 
 const App = () => {
   const [userState, setUserState] = useState({

@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: [],
@@ -21,6 +22,9 @@ module.exports = {
       ocean: {
         DEFAULT: "#2FA8B8",
       },
+    },
+    fontFamily: {
+      sans: ["rubik", ...defaultTheme.fontFamily.sans],
     },
   },
   variants: {
