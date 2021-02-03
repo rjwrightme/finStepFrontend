@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "./components/Login";
+import Router from "./components/Router";
 import "./App.css";
 import "@fontsource/rubik";
 
@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Login />
+      <Router />
     </div>
   );
 };
