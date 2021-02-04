@@ -10,3 +10,9 @@ export const postNewUser = (user) => {
     .post("/api/signup", user)
     .then((response) => console.log(response));
 };
+
+export const postLogin = (user) => {
+  return axios
+    .post("/api/login", user)
+    .then((response) => console.log(response));
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { postNewUser } from "../utils/api";
 
 const Signup = () => {
@@ -11,7 +12,6 @@ const Signup = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log(newUser);
 
     postNewUser(newUser);
   };
@@ -60,9 +60,11 @@ const Signup = () => {
         </form>
       </div>
       <p className="opacity-75 pt-4">Already a member?</p>
-      <button className="border-solid border-2 border-white box-border h-10 w-44 m-2 rounded-md text-white">
-        Login here
-      </button>
+      <Link to="/login">
+        <button className="border-solid border-2 border-white box-border h-10 w-44 m-2 rounded-md text-white">
+          Log In
+        </button>
+      </Link>
     </div>
   );
 };
