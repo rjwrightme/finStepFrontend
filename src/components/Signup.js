@@ -1,15 +1,19 @@
 import React from "react";
+import { postNewUser } from "../utils/api";
 
 const Signup = () => {
   const signupNewUser = (e) => {
     e.preventDefault();
-    const request = {
+
+    const newUser = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log(request);
+    console.log(newUser);
+
+    postNewUser(newUser);
   };
 
   return (
