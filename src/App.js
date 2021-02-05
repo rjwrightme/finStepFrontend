@@ -1,7 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import Router from "./components/Router";
 import "./App.css";
-import UserContext from "./utils/UserContext";
 import axios from "axios";
 import "@fontsource/rubik";
 
@@ -25,9 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <UserContext.Provider value={userState}>
-        <Router isAuthenticated={userState.isAuthenticated} />
-      </UserContext.Provider>
+      <Router isAuthenticated={userState.isAuthenticated} />
     </div>
   );
 };
