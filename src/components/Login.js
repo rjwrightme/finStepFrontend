@@ -4,7 +4,11 @@ import { postLogin } from "../utils/api";
 import UserContext from "../utils/UserContext";
 
 const Login = () => {
-  const { markLoggedIn } = useContext(UserContext);
+  const dispatch = useContext(UserContext);
+  const markLoggedIn = () => {
+    dispatch({ type: "login" });
+  };
+
   const history = useHistory();
   const loginUser = (e) => {
     e.preventDefault();
