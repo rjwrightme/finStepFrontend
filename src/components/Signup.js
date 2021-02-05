@@ -53,7 +53,7 @@ const Signup = () => {
           />
           <button
             type="submit"
-            className="bg-green-500 h-10 w-44 my-2 mx-auto rounded-md text-white"
+            className="bg-green h-10 w-44 my-2 mx-auto rounded-md text-white"
           >
             Sign Up
           </button>

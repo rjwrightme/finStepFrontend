@@ -1,9 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { postLogin } from "../utils/api";
+import UserContext from "../utils/UserContext";
 
 const Login = () => {
-  const signupNewUser = (e) => {
+  const { markLoggedIn } = useContext(UserContext);
+  const history = useHistory();
+  const loginUser = (e) => {
     e.preventDefault();
 
     const userCredentials = {
@@ -11,14 +14,17 @@ const Login = () => {
       password: e.target.password.value,
     };
 
-    postLogin(userCredentials);
+    postLogin(userCredentials).then(() => {
+      markLoggedIn();
+      history.push("/app");
+    });
   };
 
   return (
     <div className="bg-gradient-to-b from-aqua to-ocean h-screen flex flex-col items-center justify-center">
       <div className="container max-w-sm p-4 bg-white rounded-md">
         <h1 className="text-3xl text-center pb-4 text-ocean">Welcome Back!</h1>
-        <form method="post" onSubmit={signupNewUser} className="flex flex-col">
+        <form method="post" onSubmit={loginUser} className="flex flex-col">
           <input
             className="px-4 py-2 border-solid border border-gray-200 rounded-sm my-1"
             type="email"
@@ -33,7 +39,7 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="bg-green-500 h-10 w-44 my-2 mx-auto rounded-md text-white"
+            className="bg-green h-10 w-44 my-2 mx-auto rounded-md text-white"
           >
             Log In
           </button>

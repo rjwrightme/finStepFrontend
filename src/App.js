@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import Router from "./components/Router";
 import "./App.css";
+import UserContext from "./utils/UserContext";
 import "@fontsource/rubik";
 
 const App = () => {
   const [userState, setUserState] = useState({
     isAuthenticated: false,
-    loading: false,
-    errors: {},
+    firstName: "",
+    lastName: "",
+    email: "",
+    id: "",
   });
 
   return (
     <div className="App">
-      <Router />
+      <UserContext.Provider value={userState}>
+        <Router />
+      </UserContext.Provider>
     </div>
   );
 };
