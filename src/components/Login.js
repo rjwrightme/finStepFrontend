@@ -1,15 +1,8 @@
-import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { postLogin } from "../utils/api";
-import UserContext from "../utils/UserContext";
 
 const Login = () => {
-  const dispatch = useContext(UserContext);
-  const markLoggedIn = () => {
-    dispatch({ type: "login" });
-  };
-
-  const history = useHistory();
   const loginUser = (e) => {
     e.preventDefault();
 
@@ -19,8 +12,7 @@ const Login = () => {
     };
 
     postLogin(userCredentials).then(() => {
-      markLoggedIn();
-      history.push("/app");
+      window.location.reload();
     });
   };
 

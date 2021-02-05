@@ -1,22 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import Router from "./components/Router";
 import "./App.css";
 import UserContext from "./utils/UserContext";
+import axios from "axios";
 import "@fontsource/rubik";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "login":
-      return { isAuthenticated: true };
-    case "logout":
-      return { isAuthenticated: false };
-    default:
-      return state;
-  }
-};
-
 const App = () => {
-  const [userState, dispatch] = useReducer(reducer, {
+  const [userState, setUserState] = useState({
     isAuthenticated: false,
     firstName: "",
     lastName: "",
@@ -24,10 +14,19 @@ const App = () => {
     id: "",
   });
 
+  // check if the user is logged in. If so, update state with user data.
+  useLayoutEffect(() => {
+    axios.get("/api/user_data").then((res) => {
+      if (res.data.isAuthenticated === true) {
+        setUserState(res.data);
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
-      <UserContext.Provider value={dispatch}>
-        <Router />
+      <UserContext.Provider value={userState}>
+        <Router isAuthenticated={userState.isAuthenticated} />
       </UserContext.Provider>
     </div>
   );
