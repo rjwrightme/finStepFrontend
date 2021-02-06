@@ -6,6 +6,7 @@ import Budget from "./Budget";
 import Transactions from "./Transactions";
 import Reports from "./Reports";
 import Settings from "./Settings";
+import DesktopHeader from "./DesktopHeader";
 
 const Finstep = () => {
   const [appState, setAppState] = useState({
@@ -32,9 +33,12 @@ const Finstep = () => {
   return (
     <div>
       <Responsive displayIn={["Laptop", "Tablet"]}>
-        <SideNav appState={appState} setAppState={setAppState} />
+        <DesktopHeader />
+        <div className="flex">
+          <SideNav appState={appState} setAppState={setAppState} />
+          {renderWindow(appState.currentWindow)}
+        </div>
       </Responsive>
-      {renderWindow(appState.currentWindow)}
       {/* <h1>It works!</h1>
       <p>First: {profile.firstName}</p>
       <p>Last: {profile.lastName}</p>

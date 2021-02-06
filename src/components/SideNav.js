@@ -2,7 +2,7 @@ import React from "react";
 
 const SideNav = (props) => {
   return (
-    <nav className="sideNav">
+    <nav className="sideNav w-1/4 p-4 border border-gray-200 h-screen sidebar">
       <ul>
         <li onClick={() => props.setAppState({ currentWindow: "wallet" })}>
           <img src="/images/wallet.svg" alt="wallet icon" />
