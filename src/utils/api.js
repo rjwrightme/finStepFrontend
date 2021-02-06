@@ -1,3 +1,4 @@
+import { LOGOUT } from "../utils/actions";
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_BACKENDURL;
 
@@ -15,4 +16,10 @@ export const postLogin = (user) => {
   return axios
     .post("/api/login", user)
     .then((response) => console.log(response));
+};
+
+export const logout = (dispatch) => {
+  return axios.get("/api/logout").then(() => {
+    dispatch({ type: LOGOUT });
+  });
 };
