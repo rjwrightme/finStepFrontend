@@ -5,7 +5,7 @@ const DesktopHeader = () => {
     <header className="bg-blue p-4 flex justify-between items-center shadow relative z-10">
       <div>
         <img
-          className="w-40"
+          className="w-32"
           src="/images/finstep-logo.svg"
           alt="finstep logo"
         />
