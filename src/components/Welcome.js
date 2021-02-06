@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 const Welcome = () => {
   return (
     <div className="bg-gradient-to-b from-aqua to-ocean h-screen flex flex-col justify-center">
-      <h1 className="text-white text-4xl text-center">FinStep</h1>
+      <h1 className="text-white text-4xl text-center">
+        <img
+          className="w-52 mx-auto"
+          src="/images/finstep-logo.svg"
+          alt="finstep logo"
+        />
+      </h1>
       <div className="mt-20 mx-auto">
         <Link to="/login">
           <button className="border-solid border-2 border-white box-border h-10 px-10 m-2 rounded-md text-white">

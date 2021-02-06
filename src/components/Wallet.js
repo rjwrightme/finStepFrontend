@@ -2,7 +2,7 @@ import React from "react";
 
 const Wallet = () => {
   return (
-    <div className="bg-gray-100 h-screen h-screen-offset w-3/4">
+    <div className="bg-silver h-screen h-screen-offset w-3/4">
       <div className="bg-gradient-to-r from-aqua-light to-aqua w-100 h-44 p-4">
         <div className="max-w-lg mx-auto">
           <div className="flex w-11/12 mx-auto justify-between">

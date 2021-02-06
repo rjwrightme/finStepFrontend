@@ -1,26 +1,40 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { useUserContext } from "../utils/UserContext";
+import { UPDATE_USER } from "../utils/actions";
+import axios from "axios";
 import Welcome from "./Welcome";
 import Login from "./Login";
 import Signup from "./Signup";
 import Finstep from "./Finstep";
 import NotFound from "./NotFound";
 
-const Router = (props) => {
+const Router = () => {
+  const [userState, dispatch] = useUserContext();
+
+  // check if the user is logged in. If so, update state with user data.
+  useLayoutEffect(() => {
+    axios.get("/api/user_data").then((res) => {
+      if (res.data.isAuthenticated === true) {
+        dispatch({ type: UPDATE_USER, payload: res.data });
+      }
+    });
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {props.isAuthenticated ? <Redirect to="/app" /> : <Welcome />}
+          {userState.isAuthenticated ? <Redirect to="/app" /> : <Welcome />}
         </Route>
         <Route exact path="/login">
-          {props.isAuthenticated ? <Redirect to="/app" /> : <Login />}
+          {userState.isAuthenticated ? <Redirect to="/app" /> : <Login />}
         </Route>
         <Route exact path="/signup">
-          {props.isAuthenticated ? <Redirect to="/app" /> : <Signup />}
+          {userState.isAuthenticated ? <Redirect to="/app" /> : <Signup />}
         </Route>
         <Route exact path="/app">
-          {props.isAuthenticated ? <Finstep /> : <Redirect to="/" />}
+          {userState.isAuthenticated ? <Finstep /> : <Redirect to="/" />}
         </Route>
         <Route component={NotFound} />
       </Switch>

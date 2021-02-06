@@ -10,7 +10,7 @@ const DesktopHeader = () => {
           alt="finstep logo"
         />
       </div>
-      <div className="border-solid border-2 border-white box-border border-opacity-50 px-2 py-1 rounded-md text-white text-opacity-90">
+      <div className="border-solid border-2 border-white box-border border-opacity-50 px-2 py-1 rounded-md text-white text-opacity-90 hover:bg-white hover:text-ocean cursor-pointer">
         Log Out
       </div>
     </header>

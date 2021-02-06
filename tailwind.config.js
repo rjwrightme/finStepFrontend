@@ -19,6 +19,7 @@ module.exports = {
       },
       blue: "#2FA8B8",
       gray: colors.gray,
+      silver: "#F5F7FB",
       aqua: {
         light: "#57DDD5",
         DEFAULT: "#58D6D2",
