@@ -1,11 +1,23 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useReducer, useLayoutEffect } from "react";
 import Router from "./components/Router";
 import "./App.css";
+import UserContext from "./utils/UserContext";
 import axios from "axios";
 import "@fontsource/rubik";
 
+const reducer = (userState, action) => {
+  switch (action.type) {
+    case "updateUser":
+      return (userState = action.payload);
+    case "logout":
+      return { isAuthenticated: false };
+    default:
+      return userState;
+  }
+};
+
 const App = () => {
-  const [userState, setUserState] = useState({
+  const [userState, dispatch] = useReducer(reducer, {
     isAuthenticated: false,
     firstName: "",
     lastName: "",
@@ -17,14 +29,16 @@ const App = () => {
   useLayoutEffect(() => {
     axios.get("/api/user_data").then((res) => {
       if (res.data.isAuthenticated === true) {
-        setUserState(res.data);
+        dispatch({ type: "updateUser", payload: res.data });
       }
     });
   }, []);
 
   return (
     <div className="App">
-      <Router isAuthenticated={userState.isAuthenticated} />
+      <UserContext.Provider value={dispatch}>
+        <Router isAuthenticated={userState.isAuthenticated} />
+      </UserContext.Provider>
     </div>
   );
 };
