@@ -1,12 +1,16 @@
 import React from "react";
+import { useFinStepContext } from "../utils/FinStepContext";
+import { UPDATE_WINDOW } from "../utils/actions";
 
 const NavItem = (props) => {
+  const [state, dispatch] = useFinStepContext();
+
   return (
     <li
       className={`${
-        props.window === props.appState.currentWindow ? `active-item` : `item`
+        props.window === state.currentWindow ? `active-item` : `item`
       } flex items-center p-4 cursor-pointer box-border`}
-      onClick={() => props.setAppState({ currentWindow: props.window })}
+      onClick={() => dispatch({ type: UPDATE_WINDOW, window: props.window })}
     >
       <img
         className="mr-4"

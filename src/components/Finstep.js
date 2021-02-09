@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFinStepContext } from "../utils/FinStepContext";
 import Responsive from "./Responsive";
 import SideNav from "./SideNav";
+import DesktopHeader from "./DesktopHeader";
 import Wallet from "./Wallet";
 import Budget from "./Budget";
 import Transactions from "./Transactions";
 import Reports from "./Reports";
 import Settings from "./Settings";
-import DesktopHeader from "./DesktopHeader";
 
 const Finstep = () => {
-  const [appState, setAppState] = useState({
-    currentWindow: "wallet",
-  });
+  const [state] = useFinStepContext();
 
   const renderWindow = (window) => {
     switch (window) {
@@ -35,8 +34,8 @@ const Finstep = () => {
       <Responsive displayIn={["Laptop", "Tablet"]}>
         <DesktopHeader />
         <div className="flex">
-          <SideNav appState={appState} setAppState={setAppState} />
-          {renderWindow(appState.currentWindow)}
+          <SideNav />
+          {renderWindow(state.currentWindow)}
         </div>
       </Responsive>
       {/* <h1>It works!</h1>

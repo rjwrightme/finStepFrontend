@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useUserContext } from "../utils/UserContext";
+import { FinStepProvider } from "../utils/FinStepContext";
 import { UPDATE_USER } from "../utils/actions";
 import axios from "axios";
 import Welcome from "./Welcome";
@@ -34,7 +35,13 @@ const Router = () => {
           {userState.isAuthenticated ? <Redirect to="/app" /> : <Signup />}
         </Route>
         <Route exact path="/app">
-          {userState.isAuthenticated ? <Finstep /> : <Redirect to="/" />}
+          {userState.isAuthenticated ? (
+            <FinStepProvider>
+              <Finstep />
+            </FinStepProvider>
+          ) : (
+            <Redirect to="/" />
+          )}
         </Route>
         <Route component={NotFound} />
       </Switch>
