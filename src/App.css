@@ -13,3 +13,7 @@
     border-left: 8px solid #58DAB4;
     background-color: #EFFBF7;
 }
+
+input[type="radio"] {
+    display: none;
+}

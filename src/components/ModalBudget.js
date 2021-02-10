@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { titleCase } from "../utils/functions";
 
 const ModalBudget = () => {
   const [state, setState] = useState({
@@ -24,48 +25,99 @@ const ModalBudget = () => {
     });
   };
 
+  const switchFrequency = (type) => {
+    switch (type) {
+      case "income":
+        return "How often do you get paid?";
+      case "savings":
+        return "How often do you want to save this amount?";
+      case "expense":
+        return "How often do you pay this expense?";
+      case "debt":
+        return "How often do you make this payment?";
+      default:
+        return "How often?";
+    }
+  };
+
   return (
     <form method="post" onSubmit={addBudgetItem} className="flex flex-col">
-      <h2>What do you wish to add to your budget?</h2>
-      <div>
-        <input
-          type="radio"
-          name="type"
-          value="income"
-          checked={state.type === "income"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="income">Income</label>
-        <input
-          type="radio"
-          name="type"
-          value="savings"
-          checked={state.type === "savings"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="savings">Savings</label>
-        <input
-          type="radio"
-          name="type"
-          value="expenses"
-          checked={state.type === "expenses"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="expenses">Expense</label>
-        <input
-          type="radio"
-          name="type"
-          value="debt"
-          checked={state.type === "debt"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="debt">Debt</label>
+      <h2 className="text-xl text-ocean-dark font-semibold">New Budget Item</h2>
+      <div className="flex justify-around my-4">
+        <label className="text-center text-gray-500 cursor-pointer">
+          <input
+            type="radio"
+            name="type"
+            value="income"
+            checked={state.type === "income"}
+            onChange={onRadioChange}
+          />
+          <img
+            className={
+              state.type === "income" ? "opacity-100 w-16" : "opacity-50 w-16"
+            }
+            src="/images/income.svg"
+            alt="Income button"
+          />
+          Income
+        </label>
+        <label className="text-center text-gray-500 cursor-pointer">
+          <input
+            type="radio"
+            name="type"
+            value="savings"
+            checked={state.type === "savings"}
+            onChange={onRadioChange}
+          />
+          <img
+            className={
+              state.type === "savings" ? "opacity-100 w-16" : "opacity-50 w-16"
+            }
+            src="/images/savings.svg"
+            alt="Savings button"
+          />
+          Savings
+        </label>
+        <label className="text-center text-gray-500 cursor-pointer">
+          <input
+            type="radio"
+            name="type"
+            value="expense"
+            checked={state.type === "expense"}
+            onChange={onRadioChange}
+          />
+          <img
+            className={
+              state.type === "expense" ? "opacity-100 w-16" : "opacity-50 w-16"
+            }
+            src="/images/expenses.svg"
+            alt="Expense button"
+          />
+          Expense
+        </label>
+        <label className="text-center text-gray-500 cursor-pointer">
+          <input
+            type="radio"
+            name="type"
+            value="debt"
+            checked={state.type === "debt"}
+            onChange={onRadioChange}
+          />
+          <img
+            className={
+              state.type === "debt" ? "opacity-100 w-16" : "opacity-50 w-16"
+            }
+            src="/images/debt.svg"
+            alt="Debt button"
+          />
+          Debt
+        </label>
       </div>
       <input
         className="px-4 py-2 border-solid border border-gray-200 rounded-sm my-1"
         type="text"
         name="name"
-        placeholder="Name your Income"
+        placeholder={`${titleCase(state.type)} Name`}
       />
       <input
         className="px-4 py-2 border-solid border border-gray-200 rounded-sm my-1"
@@ -73,8 +125,14 @@ const ModalBudget = () => {
         name="amount"
         placeholder="$2,000"
       />
-      <label htmlFor="frequency">How often?</label>
-      <select id="frequency" name="frequency">
+      <label className="text-ocean-dark mt-4" htmlFor="frequency">
+        {switchFrequency(state.type)}
+      </label>
+      <select
+        id="frequency"
+        className="px-4 py-2 border-solid border border-gray-200 rounded-sm my-1 text-gray-500"
+        name="frequency"
+      >
         <option value="weekly">Weekly</option>
         <option value="fortnightly">Fortnightly</option>
         <option value="monthly">Monthly</option>
@@ -82,9 +140,9 @@ const ModalBudget = () => {
       </select>
       <button
         type="submit"
-        className="bg-green h-10 w-44 my-2 mx-auto rounded-md text-white"
+        className="bg-green h-10 w-44 my-2 mx-auto mt-5 mb-1 rounded-md text-white"
       >
-        Add
+        Add {titleCase(state.type)}
       </button>
     </form>
   );

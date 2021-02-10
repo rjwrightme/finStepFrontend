@@ -27,6 +27,7 @@ module.exports = {
       },
       ocean: {
         DEFAULT: "#2FA8B8",
+        dark: "#0c4a52",
       },
     },
     fontFamily: {
