@@ -33,3 +33,11 @@ export const postNewBudgetItem = (budgetItem) => {
     .post("/api/new-budget-item", budgetItem)
     .then((response) => console.log(response));
 };
+
+export const getBudgetItems = () => {
+  return axios.get("/api/budget-list");
+};
+
+export const getBudget = (userId) => {
+  return axios.get(`/api/budget/${userId}`);
+};

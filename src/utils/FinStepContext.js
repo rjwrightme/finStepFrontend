@@ -13,6 +13,7 @@ import {
   DELETE_EXPENSES,
   ADD_DEBT,
   DELETE_DEBT,
+  SYNC_BUDGET_ITEMS,
   UPDATE_WALLET,
   UPDATE_BUDGET_MAX,
   UPDATE_BUDGET_CURRENT,
@@ -107,6 +108,27 @@ const reducer = (state, action) => {
       return {
         ...state,
         budgetId: action.id,
+      };
+
+    case SYNC_BUDGET_ITEMS:
+      const incomeArray = action.payload.filter(
+        (budgetItem) => budgetItem.type === "income"
+      );
+      const savingsArray = action.payload.filter(
+        (budgetItem) => budgetItem.type === "savings"
+      );
+      const expensesArray = action.payload.filter(
+        (budgetItem) => budgetItem.type === "expense"
+      );
+      const debtArray = action.payload.filter(
+        (budgetItem) => budgetItem.type === "debt"
+      );
+      return {
+        ...state,
+        income: incomeArray,
+        savings: savingsArray,
+        expenses: expensesArray,
+        debt: debtArray,
       };
     default:
       return state;

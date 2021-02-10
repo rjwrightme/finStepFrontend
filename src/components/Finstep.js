@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
+import { useUserContext } from "../utils/UserContext";
+import { getBudget, getBudgetItems } from "../utils/api";
+import { UPDATE_BUDGET_ID, SYNC_BUDGET_ITEMS } from "../utils/actions";
 import Responsive from "./Responsive";
 import SideNav from "./SideNav";
 import DesktopHeader from "./DesktopHeader";
@@ -11,7 +14,19 @@ import Settings from "./Settings";
 import Modal from "./Modal";
 
 const Finstep = () => {
-  const [state] = useFinStepContext();
+  const [userState] = useUserContext();
+  const [state, dispatch] = useFinStepContext();
+
+  useEffect(() => {
+    getBudget(userState.id).then(({ data }) => {
+      if (data != null) {
+        dispatch({ type: UPDATE_BUDGET_ID, id: data.id });
+      }
+      getBudgetItems(state.budgetId).then(({ data }) => {
+        dispatch({ type: SYNC_BUDGET_ITEMS, payload: data });
+      });
+    });
+  }, [dispatch, state.budgetId, userState.id]);
 
   const renderWindow = (window) => {
     switch (window) {
