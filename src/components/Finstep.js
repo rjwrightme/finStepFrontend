@@ -8,6 +8,7 @@ import Budget from "./Budget";
 import Transactions from "./Transactions";
 import Reports from "./Reports";
 import Settings from "./Settings";
+import Modal from "./Modal";
 
 const Finstep = () => {
   const [state] = useFinStepContext();
@@ -31,6 +32,7 @@ const Finstep = () => {
 
   return (
     <div>
+      {state.modal && <Modal />}
       <Responsive displayIn={["Laptop", "Tablet"]}>
         <DesktopHeader />
         <div className="flex">

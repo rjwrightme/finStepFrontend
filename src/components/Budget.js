@@ -1,5 +1,6 @@
 import React from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
+import { SHOW_MODAL } from "../utils/actions";
 
 const Budget = () => {
   const [state, dispatch] = useFinStepContext();
@@ -22,7 +23,12 @@ const Budget = () => {
                 {state.budgetCurrent} of {state.budgetMax}
               </p>
             ) : (
-              <button className="border-solid border-2 border-gray-500 bg-silver box-border px-4 py-2 mx-auto block rounded-md text-gray-500 hover:bg-green-light hover:border-green hover:text-white cursor-pointer">
+              <button
+                onClick={() => {
+                  dispatch({ type: SHOW_MODAL, modal: "budget" });
+                }}
+                className="border-solid border-2 border-gray-500 bg-silver box-border px-4 py-2 mx-auto block rounded-md text-gray-500 hover:bg-green-light hover:border-green hover:text-white cursor-pointer"
+              >
                 Create a Budget
               </button>
             )}

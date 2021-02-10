@@ -33,6 +33,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         modal: true,
+        modalType: action.modal,
       };
 
     case HIDE_MODAL:
@@ -118,6 +119,7 @@ const FinStepProvider = ({ value = [], ...props }) => {
     wallet: 0,
     transactions: [],
     modal: false,
+    modalType: "",
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
