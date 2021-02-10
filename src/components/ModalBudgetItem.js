@@ -1,22 +1,26 @@
 import React, { useState } from "react";
+import { useFinStepContext } from "../utils/FinStepContext";
+import { postNewBudgetItem } from "../utils/api";
 import { titleCase } from "../utils/functions";
+import { HIDE_MODAL } from "../utils/actions";
 
 const ModalBudget = () => {
+  const [appState, dispatch] = useFinStepContext();
   const [state, setState] = useState({
     type: "",
   });
 
   const addBudgetItem = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    // const newBudgetItem = {
-    //   firstName: e.target.firstName.value,
-    //   lastName: e.target.lastName.value,
-    //   email: e.target.email.value,
-    //   password: e.target.password.value,
-    // };
-
-    // postNewUser(newUser);
+    const newBudgetItem = {
+      itemName: e.target.name.value,
+      type: e.target.type.value,
+      amount: parseFloat(e.target.amount.value),
+      frequency: e.target.frequency.value,
+      budgetId: appState.budgetId,
+    };
+    // POST the data to the server
+    postNewBudgetItem(newBudgetItem).then(dispatch({ type: HIDE_MODAL }));
   };
 
   const onRadioChange = (e) => {

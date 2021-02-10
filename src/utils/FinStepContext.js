@@ -16,6 +16,7 @@ import {
   UPDATE_WALLET,
   UPDATE_BUDGET_MAX,
   UPDATE_BUDGET_CURRENT,
+  UPDATE_BUDGET_ID,
 } from "./actions";
 
 const FinStepContext = createContext();
@@ -102,6 +103,11 @@ const reducer = (state, action) => {
         debt: state.debt.splice(action.index, 1),
       };
 
+    case UPDATE_BUDGET_ID:
+      return {
+        ...state,
+        budgetId: action.id,
+      };
     default:
       return state;
   }
@@ -110,6 +116,7 @@ const reducer = (state, action) => {
 const FinStepProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     currentWindow: "wallet",
+    budgetId: 0,
     budgetMax: 0,
     budgetCurrent: 0,
     income: [],

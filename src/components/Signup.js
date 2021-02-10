@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { postNewUser } from "../utils/api";
+import { postLogin } from "../utils/api";
 
 const Signup = () => {
   const signupNewUser = (e) => {
@@ -13,7 +14,17 @@ const Signup = () => {
       password: e.target.password.value,
     };
 
-    postNewUser(newUser);
+    // Add new user to database then log them in
+    postNewUser(newUser).then(() => {
+      const userCredentials = {
+        email: newUser.email,
+        password: newUser.password,
+      };
+
+      postLogin(userCredentials).then(() => {
+        window.location.reload();
+      });
+    });
   };
 
   return (

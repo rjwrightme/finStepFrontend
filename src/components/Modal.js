@@ -1,15 +1,15 @@
 import React from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
 import { HIDE_MODAL } from "../utils/actions";
-import ModalBudget from "./ModalBudget";
+import ModalBudgetItem from "./ModalBudgetItem";
 
 const Modal = () => {
   const [state, dispatch] = useFinStepContext();
 
   const renderModalContent = (component) => {
     switch (component) {
-      case "budget":
-        return <ModalBudget />;
+      case "budgetItem":
+        return <ModalBudgetItem />;
       default:
         return;
     }

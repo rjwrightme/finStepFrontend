@@ -23,3 +23,13 @@ export const logout = (dispatch) => {
     dispatch({ type: LOGOUT });
   });
 };
+
+export const postNewBudget = (budget) => {
+  return axios.post("/api/new-budget", budget).then((response) => response);
+};
+
+export const postNewBudgetItem = (budgetItem) => {
+  return axios
+    .post("/api/new-budget-item", budgetItem)
+    .then((response) => console.log(response));
+};
