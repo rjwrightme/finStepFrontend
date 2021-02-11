@@ -44,6 +44,22 @@ const reducer = (state, action) => {
         modal: false,
       };
 
+    case UPDATE_BUDGET_CURRENT:
+      return {
+        ...state,
+        budgetCurrent: (
+          parseFloat(state.budgetCurrent) + parseFloat(action.payload)
+        ).toFixed(2),
+      };
+
+    case UPDATE_BUDGET_MAX:
+      return {
+        ...state,
+        budgetMax: (
+          parseFloat(state.budgetMax) + parseFloat(action.payload)
+        ).toFixed(2),
+      };
+
     case ADD_TRANSACTION:
       return {
         ...state,

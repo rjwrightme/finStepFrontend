@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
 import { postNewBudgetItem } from "../utils/api";
 import { titleCase } from "../utils/functions";
-import { HIDE_MODAL } from "../utils/actions";
+import {
+  HIDE_MODAL,
+  UPDATE_BUDGET_MAX,
+  UPDATE_BUDGET_CURRENT,
+} from "../utils/actions";
 
 const ModalBudget = () => {
   const [appState, dispatch] = useFinStepContext();
   const [state, setState] = useState({
-    type: "",
+    type: "income",
   });
 
   const addBudgetItem = (e) => {
@@ -15,10 +19,41 @@ const ModalBudget = () => {
     const newBudgetItem = {
       itemName: e.target.name.value,
       type: e.target.type.value,
-      amount: parseFloat(e.target.amount.value),
+      amount: parseFloat(e.target.amount.value * 100), // convert value to number in cents
       frequency: e.target.frequency.value,
       budgetId: appState.budgetId,
     };
+
+    console.log(newBudgetItem.frequency);
+    switch (newBudgetItem.frequency) {
+      case "weekly":
+        newBudgetItem.daily = newBudgetItem.amount / 7;
+        break;
+      case "fortnightly":
+        newBudgetItem.daily = newBudgetItem.amount / 14;
+        break;
+      case "monthly":
+        newBudgetItem.daily = (newBudgetItem.amount * 12) / 365;
+        break;
+      case "yearly":
+        newBudgetItem.daily = newBudgetItem.amount / 365;
+        break;
+      default:
+        newBudgetItem.daily = 0;
+    }
+
+    if (newBudgetItem.type === "income") {
+      dispatch({
+        type: UPDATE_BUDGET_MAX,
+        payload: (newBudgetItem.daily * 0.3).toFixed(2),
+      });
+    } else {
+      dispatch({
+        type: UPDATE_BUDGET_CURRENT,
+        payload: (newBudgetItem.daily * 0.3).toFixed(2),
+      });
+    }
+
     // POST the data to the server
     postNewBudgetItem(newBudgetItem).then(dispatch({ type: HIDE_MODAL }));
   };

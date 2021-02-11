@@ -34,7 +34,7 @@ const Budget = () => {
             />
           </div>
           <div className="bg-white p-10 rounded-2xl shadow-md relative z-10 -mt-8">
-            {state.budgetId > 0 ? (
+            {state.budgetCurrent > 0 || state.budgetMax > 0 ? (
               <p className="text-2xl text-gray-500 font-bold">
                 ${state.budgetCurrent} of ${state.budgetMax}
               </p>
