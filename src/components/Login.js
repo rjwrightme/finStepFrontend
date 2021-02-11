@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postLogin } from "../utils/api";
 
 const Login = () => {
+  let history = useHistory();
+
   const loginUser = (e) => {
     e.preventDefault();
 
@@ -12,7 +14,7 @@ const Login = () => {
     };
 
     postLogin(userCredentials).then(() => {
-      window.location.reload();
+      history.push("/app");
     });
   };
 

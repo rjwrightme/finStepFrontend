@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postNewUser } from "../utils/api";
 import { postLogin } from "../utils/api";
 
 const Signup = () => {
+  let history = useHistory();
+
   const signupNewUser = (e) => {
     e.preventDefault();
 
@@ -22,7 +24,7 @@ const Signup = () => {
       };
 
       postLogin(userCredentials).then(() => {
-        window.location.reload();
+        history.push("/app");
       });
     });
   };
