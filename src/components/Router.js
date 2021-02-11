@@ -2,8 +2,8 @@ import React, { useLayoutEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useUserContext } from "../utils/UserContext";
 import { FinStepProvider } from "../utils/FinStepContext";
+import { getUserData } from "../utils/api";
 import { UPDATE_USER } from "../utils/actions";
-import axios from "axios";
 import Welcome from "./Welcome";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -15,7 +15,7 @@ const Router = () => {
 
   // check if the user is logged in. If so, update state with user data.
   useLayoutEffect(() => {
-    axios.get("/api/user_data").then((res) => {
+    getUserData().then((res) => {
       if (res.data.isAuthenticated === true) {
         dispatch({ type: UPDATE_USER, payload: res.data });
       }
