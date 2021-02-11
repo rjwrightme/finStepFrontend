@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
 import { useUserContext } from "../utils/UserContext";
 import { postNewBudget } from "../utils/api";

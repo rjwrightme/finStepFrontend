@@ -44,6 +44,12 @@ const reducer = (state, action) => {
         modal: false,
       };
 
+    case UPDATE_WALLET:
+      return {
+        ...state,
+        wallet: action.payload,
+      };
+
     case UPDATE_BUDGET_CURRENT:
       return {
         ...state,
