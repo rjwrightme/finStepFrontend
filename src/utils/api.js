@@ -29,9 +29,10 @@ export const postLogin = (user) => {
 };
 
 export const logout = (dispatch) => {
-  return axios.get(`/api/logout`).then(() => {
-    dispatch({ type: LOGOUT });
-  });
+  if (localStorage.getItem("accessToken")) {
+    localStorage.removeItem("accessToken");
+  }
+  dispatch({ type: LOGOUT });
 };
 
 export const postNewBudget = (budget) => {
