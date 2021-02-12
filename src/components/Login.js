@@ -1,8 +1,11 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useUserContext } from "../utils/UserContext";
 import { postLogin } from "../utils/api";
+import { UPDATE_USER } from "../utils/actions";
 
 const Login = () => {
+  const [, dispatch] = useUserContext();
   let history = useHistory();
 
   const loginUser = (e) => {
@@ -14,6 +17,7 @@ const Login = () => {
     };
 
     postLogin(userCredentials).then(() => {
+      dispatch({ type: UPDATE_USER, payload: { isAuthenticated: true } });
       history.push("/app");
     });
   };
