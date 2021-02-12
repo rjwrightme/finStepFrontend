@@ -15,6 +15,10 @@ const Router = () => {
 
   // check if the user is logged in. If so, update state with user data.
   useLayoutEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      console.log("No access token found.");
+      return;
+    }
     getUserData().then((res) => {
       if (res.data.isAuthenticated === true) {
         dispatch({ type: UPDATE_USER, payload: res.data });

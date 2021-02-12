@@ -15,7 +15,11 @@ const reducer = (userState, action) => {
     case UPDATE_USER:
       return {
         ...userState,
-        ...action.payload,
+        isAuthenticated: action.payload.isAuthenticated,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+        id: action.payload.id,
       };
 
     case LOGOUT:

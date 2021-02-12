@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     postLogin(userCredentials).then(() => {
-      dispatch({ type: UPDATE_USER, payload: { isAuthenticated: true } });
+      // dispatch({ type: UPDATE_USER, payload: { isAuthenticated: true } });
       history.push("/app");
     });
   };

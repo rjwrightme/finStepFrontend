@@ -3,7 +3,11 @@ import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_BACKENDURL;
 
 export const getUserData = () => {
-  return axios.get(`/api/user_data`);
+  return axios.get(`/api/user_data`, {
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
+    },
+  });
 };
 
 export const getUsers = () => {
@@ -19,7 +23,9 @@ export const postNewUser = (user) => {
 export const postLogin = (user) => {
   return axios
     .post(`/api/login`, user)
-    .then((response) => console.log(response));
+    .then((response) =>
+      localStorage.setItem("accessToken", `Bearer ${response.data.accessToken}`)
+    );
 };
 
 export const logout = (dispatch) => {
