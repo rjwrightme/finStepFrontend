@@ -15,6 +15,18 @@ export const titleCase = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
+export const formatMoney = (cents) => {
+  // take a value in cents and return a string formatted in dollars
+  // eg 312374 => $3,123.74
+  return (
+    "$" +
+    (parseInt(cents) / 100)
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  );
+};
+
 export const calcBudgetTotals = (serverData) => {
   const [budgetMaxArray, budgetCurrentArray] = partition(
     serverData,
@@ -37,7 +49,7 @@ export const calcBudgetTotals = (serverData) => {
     savingsArray,
     expensesArray,
     debtArray,
-    budgetMax: (totalDailyValues(budgetMaxArray) * 0.3).toFixed(2),
-    budgetCurrent: (totalDailyValues(budgetCurrentArray) * 0.3).toFixed(2),
+    budgetMax: totalDailyValues(budgetMaxArray) * 30,
+    budgetCurrent: totalDailyValues(budgetCurrentArray) * 30,
   };
 };

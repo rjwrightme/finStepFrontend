@@ -45,12 +45,12 @@ const ModalBudget = () => {
     if (newBudgetItem.type === "income") {
       dispatch({
         type: UPDATE_BUDGET_MAX,
-        payload: (newBudgetItem.daily * 0.3).toFixed(2),
+        payload: newBudgetItem.daily * 30,
       });
     } else {
       dispatch({
         type: UPDATE_BUDGET_CURRENT,
-        payload: (newBudgetItem.daily * 0.3).toFixed(2),
+        payload: newBudgetItem.daily * 30,
       });
     }
 

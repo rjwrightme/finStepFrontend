@@ -3,6 +3,8 @@ import { useFinStepContext } from "../utils/FinStepContext";
 import { useUserContext } from "../utils/UserContext";
 import { postNewBudget } from "../utils/api";
 import { SHOW_MODAL, UPDATE_BUDGET_ID } from "../utils/actions";
+import { formatMoney } from "../utils/functions";
+import ProgressBar from "./ProgressBar";
 
 const Budget = () => {
   const [userState] = useUserContext();
@@ -35,9 +37,16 @@ const Budget = () => {
           </div>
           <div className="bg-white p-10 rounded-2xl shadow-md relative z-10 -mt-8">
             {state.budgetCurrent > 0 || state.budgetMax > 0 ? (
-              <p className="text-2xl text-gray-500 font-bold">
-                ${state.budgetCurrent} of ${state.budgetMax}
-              </p>
+              <div>
+                <p className="text-2xl text-gray-500 font-bold">
+                  {formatMoney(state.budgetCurrent)} of{" "}
+                  {formatMoney(state.budgetMax)}
+                </p>
+                <ProgressBar
+                  spent={state.budgetCurrent}
+                  budget={state.budgetMax}
+                />
+              </div>
             ) : (
               <button
                 onClick={addBudget}
