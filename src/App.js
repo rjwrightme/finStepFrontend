@@ -1,6 +1,6 @@
 import React from "react";
 import Router from "./components/Router";
-import "./App.css";
+import "./index.css";
 import { UserProvider } from "./utils/UserContext";
 import "@fontsource/rubik";
 
