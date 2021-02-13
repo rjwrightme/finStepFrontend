@@ -45,8 +45,8 @@ export const postNewBudgetItem = (budgetItem) => {
     .then((response) => console.log(response));
 };
 
-export const getBudgetItems = () => {
-  return axios.get("api/budget-list");
+export const getBudgetItems = (userID) => {
+  return axios.get(`api/budget-list/${userID}`);
 };
 
 export const getBudget = (userId) => {

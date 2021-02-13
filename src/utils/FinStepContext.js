@@ -19,6 +19,7 @@ import {
   UPDATE_BUDGET_CURRENT,
   UPDATE_BUDGET_ID,
 } from "./actions";
+import { calcBudgetTotals } from "../utils/functions";
 
 const FinStepContext = createContext();
 const { Provider } = FinStepContext;
@@ -133,24 +134,16 @@ const reducer = (state, action) => {
       };
 
     case SYNC_BUDGET_ITEMS:
-      const incomeArray = action.payload.filter(
-        (budgetItem) => budgetItem.type === "income"
-      );
-      const savingsArray = action.payload.filter(
-        (budgetItem) => budgetItem.type === "savings"
-      );
-      const expensesArray = action.payload.filter(
-        (budgetItem) => budgetItem.type === "expense"
-      );
-      const debtArray = action.payload.filter(
-        (budgetItem) => budgetItem.type === "debt"
-      );
+      const budget = calcBudgetTotals(action.payload);
+
       return {
         ...state,
-        income: incomeArray,
-        savings: savingsArray,
-        expenses: expensesArray,
-        debt: debtArray,
+        income: budget.incomeArray,
+        savings: budget.savingsArray,
+        expenses: budget.expensesArray,
+        debt: budget.debtArray,
+        budgetMax: budget.budgetMax,
+        budgetCurrent: budget.budgetCurrent,
       };
     default:
       return state;

@@ -19,10 +19,11 @@ const Finstep = () => {
 
   useEffect(() => {
     getBudget(userState.id).then(({ data }) => {
-      if (data != null) {
-        dispatch({ type: UPDATE_BUDGET_ID, id: data.id });
+      if (data == null) {
+        return;
       }
-      getBudgetItems(state.budgetId).then(({ data }) => {
+      dispatch({ type: UPDATE_BUDGET_ID, id: data.id });
+      getBudgetItems(userState.id).then(({ data }) => {
         dispatch({ type: SYNC_BUDGET_ITEMS, payload: data });
       });
     });
