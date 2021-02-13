@@ -37,7 +37,7 @@ export const calcBudgetTotals = (serverData) => {
     savingsArray,
     expensesArray,
     debtArray,
-    budgetMax: totalDailyValues(budgetMaxArray),
-    budgetCurrent: totalDailyValues(budgetCurrentArray),
+    budgetMax: (totalDailyValues(budgetMaxArray) * 0.3).toFixed(2),
+    budgetCurrent: (totalDailyValues(budgetCurrentArray) * 0.3).toFixed(2),
   };
 };
