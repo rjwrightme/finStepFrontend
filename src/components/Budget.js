@@ -5,6 +5,7 @@ import { postNewBudget } from "../utils/api";
 import { SHOW_MODAL, UPDATE_BUDGET_ID } from "../utils/actions";
 import { formatMoney } from "../utils/functions";
 import ProgressBar from "./ProgressBar";
+import BudgetCategory from "./BudgetCategory";
 
 const Budget = () => {
   const [userState] = useUserContext();
@@ -46,6 +47,16 @@ const Budget = () => {
                   spent={state.budgetCurrent}
                   budget={state.budgetMax}
                 />
+                {state.income.length > 0 && (
+                  <BudgetCategory category="income" />
+                )}
+                {state.savings.length > 0 && (
+                  <BudgetCategory category="savings" />
+                )}
+                {state.expenses.length > 0 && (
+                  <BudgetCategory category="expenses" />
+                )}
+                {state.debt.length > 0 && <BudgetCategory category="debt" />}
               </div>
             ) : (
               <button
@@ -58,7 +69,7 @@ const Budget = () => {
           </div>
           <button
             onClick={() => dispatch({ type: SHOW_MODAL, modal: "budgetItem" })}
-            className="fixed right-4 bottom-4 w-10 h-10 rounded-full border-solid border-2 border-ocean bg-aqua text-white text-3xl"
+            className="fixed right-4 bottom-4 w-10 h-10 rounded-full border-solid border-2 border-ocean bg-aqua text-white text-3xl z-10"
           >
             +
           </button>

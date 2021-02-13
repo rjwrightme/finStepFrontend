@@ -709,6 +709,10 @@ video {
   border-top-width: 8px;
 }
 
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -771,6 +775,11 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-xl {
@@ -899,6 +908,11 @@ video {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .px-4 {
@@ -1100,6 +1114,12 @@ video {
   }
 }
 
+@media(min-width: 768px) {
+  body {
+    background-color: #F5F7FB;
+  }
+}
+
 .h-screen-offset {
   margin-top: -68px;
   padding-top: 68px;
@@ -1138,6 +1158,42 @@ input[type="radio"] {
 
 .h-10px {
   height: 10px;
+}
+
+.income {
+  background-color: #F6FFFC;
+  border-color: #ACEDDA;
+}
+
+.income h2 {
+  color: #29BD91;
+}
+
+.savings {
+  background-color: #F6FBFF;
+  border-color: #ACD5ED;
+}
+
+.savings h2 {
+  color: #2976BD;
+}
+
+.expenses {
+  background-color: #FFFBF1;
+  border-color: #F5DEA2;
+}
+
+.expenses h2 {
+  color: #DDB241;
+}
+
+.debt {
+  background-color: #FFF6F6;
+  border-color: #EDACAC;
+}
+
+.debt h2 {
+  color: #BD2929;
 }
 
 @media (min-width: 640px) {

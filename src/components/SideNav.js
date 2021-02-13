@@ -3,7 +3,7 @@ import NavItem from "./NavItem";
 
 const SideNav = (props) => {
   return (
-    <nav className="sideNav w-1/4 border border-gray-200 h-screen h-screen-offset">
+    <nav className="sideNav bg-white w-1/4 border border-gray-200 h-screen h-screen-offset">
       <ul className="mt-4">
         <NavItem
           appState={props.appState}
