@@ -37,6 +37,7 @@ const reducer = (state, action) => {
         ...state,
         modal: true,
         modalType: action.modal,
+        selectedItem: action.selectedItem || "",
       };
 
     case HIDE_MODAL:

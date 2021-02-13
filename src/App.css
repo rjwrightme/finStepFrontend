@@ -85,3 +85,7 @@ input[type="radio"] {
 .debt h2 {
     color: #BD2929;
 }
+
+.bg-darken:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}

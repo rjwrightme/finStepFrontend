@@ -40,13 +40,15 @@ export const postNewBudget = (budget) => {
 };
 
 export const postNewBudgetItem = (budgetItem) => {
-  return axios
-    .post("api/new-budget-item", budgetItem)
-    .then((response) => console.log(response));
+  return axios.post("api/new-budget-item", budgetItem);
 };
 
 export const getBudgetItems = (userID) => {
   return axios.get(`api/budget-list/${userID}`);
+};
+
+export const deleteBudgetItem = (budgetItemId) => {
+  return axios.delete(`api/budget-item/${budgetItemId}`);
 };
 
 export const getBudget = (userId) => {

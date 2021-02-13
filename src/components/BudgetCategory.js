@@ -1,9 +1,23 @@
 import React from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
 import { titleCase, formatMoney } from "../utils/functions";
+import { SHOW_MODAL } from "../utils/actions";
 
 const BudgetCategory = (props) => {
-  const [state] = useFinStepContext();
+  const [state, dispatch] = useFinStepContext();
+
+  const handleClick = (e) => {
+    if (e.target.getAttribute("data-id") != null) {
+      const category = e.target.getAttribute("data-category");
+      const id = e.target.getAttribute("data-id");
+      const selectedItem = state[category].filter((item) => item.id == id)[0];
+      dispatch({
+        type: SHOW_MODAL,
+        modal: "editBudgetItem",
+        selectedItem: selectedItem,
+      });
+    }
+  };
 
   return (
     <div
@@ -13,9 +27,25 @@ const BudgetCategory = (props) => {
 
       {state[props.category].map((lineItem) => {
         return (
-          <div className="flex justify-between border-b border-gray-300 py-4">
-            <span className="text-gray-500">{lineItem.itemName}</span>
-            <span className="text-gray-500">
+          <div
+            key={`budgetItem-${lineItem.id}`}
+            data-id={lineItem.id}
+            data-category={props.category}
+            onClick={handleClick}
+            className="flex justify-between border-b border-gray-300 py-4 bg-darken cursor-pointer"
+          >
+            <span
+              data-id={lineItem.id}
+              data-category={props.category}
+              className="text-gray-500"
+            >
+              {lineItem.itemName}
+            </span>
+            <span
+              data-id={lineItem.id}
+              data-category={props.category}
+              className="text-gray-500"
+            >
               {formatMoney(lineItem.amount)}
             </span>
           </div>

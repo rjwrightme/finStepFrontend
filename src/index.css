@@ -1057,6 +1057,10 @@ video {
   width: 75%;
 }
 
+.w-5\/12 {
+  width: 41.666667%;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -1194,6 +1198,10 @@ input[type="radio"] {
 
 .debt h2 {
   color: #BD2929;
+}
+
+.bg-darken:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 @media (min-width: 640px) {

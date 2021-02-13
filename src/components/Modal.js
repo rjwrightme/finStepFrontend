@@ -2,6 +2,7 @@ import React from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
 import { HIDE_MODAL } from "../utils/actions";
 import ModalBudgetItem from "./ModalBudgetItem";
+import ModalEditBudgetItem from "./ModalEditBudgetItem";
 
 const Modal = () => {
   const [state, dispatch] = useFinStepContext();
@@ -10,6 +11,8 @@ const Modal = () => {
     switch (component) {
       case "budgetItem":
         return <ModalBudgetItem />;
+      case "editBudgetItem":
+        return <ModalEditBudgetItem />;
       default:
         return;
     }
