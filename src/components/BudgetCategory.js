@@ -10,7 +10,9 @@ const BudgetCategory = (props) => {
     if (e.target.getAttribute("data-id") != null) {
       const category = e.target.getAttribute("data-category");
       const id = e.target.getAttribute("data-id");
-      const selectedItem = state[category].filter((item) => item.id == id)[0];
+      const selectedItem = state[category].filter(
+        (item) => parseInt(item.id) === parseInt(id)
+      )[0];
       dispatch({
         type: SHOW_MODAL,
         modal: "editBudgetItem",
