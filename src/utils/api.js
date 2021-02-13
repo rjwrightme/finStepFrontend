@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_BACKENDURL;
 
 export const getUserData = () => {
-  return axios.get(`/api/user_data`, {
+  return axios.get("api/user_data", {
     headers: {
       Authorization: localStorage.getItem("accessToken"),
     },
@@ -11,18 +11,18 @@ export const getUserData = () => {
 };
 
 export const getUsers = () => {
-  return axios.get(`/api/users`);
+  return axios.get("api/users");
 };
 
 export const postNewUser = (user) => {
   return axios
-    .post(`/api/signup`, user)
+    .post("api/signup", user)
     .then((response) => console.log(response));
 };
 
 export const postLogin = (user) => {
   return axios
-    .post(`/api/login`, user)
+    .post("api/login", user)
     .then((response) =>
       localStorage.setItem("accessToken", `Bearer ${response.data.accessToken}`)
     );
@@ -36,17 +36,17 @@ export const logout = (dispatch) => {
 };
 
 export const postNewBudget = (budget) => {
-  return axios.post(`/api/new-budget`, budget).then((response) => response);
+  return axios.post("api/new-budget", budget).then((response) => response);
 };
 
 export const postNewBudgetItem = (budgetItem) => {
   return axios
-    .post(`/api/new-budget-item`, budgetItem)
+    .post("api/new-budget-item", budgetItem)
     .then((response) => console.log(response));
 };
 
 export const getBudgetItems = () => {
-  return axios.get(`/api/budget-list`);
+  return axios.get("api/budget-list");
 };
 
 export const getBudget = (userId) => {
