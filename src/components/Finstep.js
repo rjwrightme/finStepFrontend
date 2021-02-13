@@ -27,7 +27,15 @@ const Finstep = () => {
         dispatch({ type: SYNC_BUDGET_ITEMS, payload: data });
       });
     });
-  }, [dispatch, state.budgetId, userState.id]);
+  }, [
+    dispatch,
+    state.budgetId,
+    userState.id,
+    state.income,
+    state.savings,
+    state.expenses,
+    state.debt,
+  ]);
 
   const renderWindow = (window) => {
     switch (window) {

@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useFinStepContext } from "../utils/FinStepContext";
-import { useUserContext } from "../utils/UserContext";
-import { postNewBudgetItem, getBudgetItems } from "../utils/api";
+import { postNewBudgetItem } from "../utils/api";
 import { titleCase } from "../utils/functions";
 import {
   HIDE_MODAL,
   UPDATE_BUDGET_MAX,
   UPDATE_BUDGET_CURRENT,
-  SYNC_BUDGET_ITEMS,
 } from "../utils/actions";
 
 const ModalBudget = () => {
-  const [userState] = useUserContext();
   const [appState, dispatch] = useFinStepContext();
   const [state, setState] = useState({
     type: "income",
@@ -57,13 +54,7 @@ const ModalBudget = () => {
     }
 
     // POST the data to the server
-    postNewBudgetItem(newBudgetItem)
-      .then(dispatch({ type: HIDE_MODAL }))
-      .then(
-        getBudgetItems(userState.id).then(({ data }) => {
-          dispatch({ type: SYNC_BUDGET_ITEMS, payload: data });
-        })
-      );
+    postNewBudgetItem(newBudgetItem).then(dispatch({ type: HIDE_MODAL }));
   };
 
   const onRadioChange = (e) => {
